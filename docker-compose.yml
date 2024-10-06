@@ -1,0 +1,21 @@
+version: '3'
+services:
+  backend-go:
+    build: ./peer-learning-backend-go
+    ports:
+      - "8081:8081"
+    networks:
+      - peer-learning-net
+
+  api-node:
+    build: ./peer-learning-api
+    ports:
+      - "3000:3000"
+    networks:
+      - peer-learning-net
+    depends_on:
+      - backend-go
+
+networks:
+  peer-learning-net:
+    driver: bridge
